@@ -25,7 +25,7 @@ function onFormSubmit(e) {
 }
 
 function onFormInput(e) {
-formData[e.target.name] = e.target.value;
+    formData[e.target.name] = e.target.value;
 
 localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(formData));
 }
@@ -35,15 +35,15 @@ function restoreFormData() {
     const savedData = localStorage.getItem(LOCAL_STORAGE_KEY);
 
     if (savedData) {
-    
     const parsedData = JSON.parse(savedData)
     const elements = refs.form.querySelectorAll(`[name]`)
 
     for (const element of elements) {
         if (Object.keys(parsedData).includes(element.name)) {
-            element.value = parsedData[element.name];}
+            element.value = parsedData[element.name];
+            formData[element.name] = parsedData[element.name];
+        }
         }
     }
-    
-    return;
+        return;
 }
